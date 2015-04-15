@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>What do you do when you do whatever you want?</title>
+    <title>OMG STREAMS</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <style type="text/css">
       @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
@@ -14,6 +14,7 @@
         font-weight: normal;
       }
       .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-slide-content { vertical-align: middle; font-size: 35px;}
     </style>
   </head>
   <body>
@@ -29,30 +30,34 @@ class: center, middle
 class: center, middle
 
 # Pam Selle
-# @pamasaur | thewebivore.com | turing.cool
+
+@pamasaur
+
+thewebivore.com
+
+turing.cool
 
 ---
-
 class: center, middle
 
-# Recurse Center
-![Recurse Center](https://d29xw0ra2h4o4u.cloudfront.net/assets/logo-no-text-e59d3bceb64d1f332e1ce4a97283976d.png)
-
----
-
-# GOAL: Streams are the most excellent data type
+# Thesis:
+# Streams are the MOST ⭐️awesome⭐️ data structure you didn't know enough about
 
 ---
 
 # Agenda
 
-* Step 1: Streams?
-* Step 2: Streams in JS
-* Step 3: PRACTICAL streams in JS
+* Step 1: Streams? STREAMS!!!
+* Step 2: Streams in practice
+* Step 3: Streams in JavaScript
 
 ---
 
-# Step 1: Streams? Streams!
+# Step 1: Streams? STREAMS!!!
+
+---
+
+# Streams?
 
 ---
 
@@ -112,10 +117,9 @@ class: center, middle
 * User input
 * Large data sets*
 * Your heartbeat*
-
 ---
 
-SICP: “Stream processing lets us model systems that have state without ever using assignment or mutable data.”
+# “Stream processing lets us model systems that have state without ever using assignment or mutable data.” - SICP
 
 ---
 
@@ -156,11 +160,45 @@ SICP: “Stream processing lets us model systems that have state without ever us
 # Step 3: Streams in JavaScript
 
 ---
+
 # Node streams
 
 ---
 
-# Stream
+# Classic Example (from substack):
+
+---
+
+``` js
+var http = require('http');
+var fs = require('fs');
+
+var server = http.createServer(function (req, res) {
+    fs.readFile(__dirname + '/data.txt', function (err, data) {
+        res.end(data);
+    });
+});
+server.listen(8000);
+```
+---
+
+``` js
+var http = require('http');
+var fs = require('fs');
+
+var server = http.createServer(function (req, res) {
+    var stream = fs.createReadStream(__dirname + '/data.txt');
+    stream.pipe(res);
+});
+server.listen(8000);
+```
+
+---
+
+# Links
+* http://nodestreams.com/
+* https://github.com/substack/stream-handbook/
+* https://github.com/substack/stream-adventure/
 
 ---
 
@@ -168,14 +206,46 @@ SICP: “Stream processing lets us model systems that have state without ever us
 
 ---
 
-# Code slides
+# Generators
+* function*
+* yield
 
 ---
 
-# 
+``` js
+function* something() {
+  yield 2;
+}
+```
 
 ---
 
+# Larger generators sample
+
+---
+
+# Generators as iterators
+
+http://bit.ly/1NL1NEB
+
+(@getify's router)
+---
+
+# Libraries &amp; Upcoming
+
+---
+
+# BaconJS || RxJS || HighlandJS
+
+---
+
+# Browser streams standard
+
+---
+
+# Reactive Streams
+
+---
 class: center, middle
 
 # Thank you!
@@ -187,11 +257,5 @@ class: center, middle
     <script>
       var slideshow = remark.create();
     </script>
-    <!--# Agenda-->
-
-<!--1. Introduction-->
-<!--2. Deep-dive-->
-<!--3. ...-->
-
   </body>
 </html>
