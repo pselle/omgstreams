@@ -2,87 +2,13 @@ Streams are a clever idea that allows one to use sequence manipulations without 
 
 SICP Sec 3.5.1
 
-Streams outline
 
-- Streams?
+## SpaceTime App
 
-From unix
-ex. sed
+http://spacetimeapp.herokuapp.com
 
-Simple terminal demo
+https://github.com/HacktheUniverse/constellation-deformation/blob/master/delorean/src/app.js#L23-L25
 
-Streams are a data structure
+## Last Week Blog
 
-SICP says “Streams are delayed lists”
-
-
-Why?
-Can’t hold all the things in memory
-Bandwidth is expensive
-
-- Streams!!!!
-
-Now I’ll rant a bit about how streams are !! awesome
-
-What if you want to represent a (possibly) infinite data set
-
-STREAMS
-
-WIZARDS
-
-What are things that don’t have an end?
-- natural numbers, natural phenomena ex. electromagnetic storms, user input (stdin), large data sets, your heartbeat
-Ok maybe an UNKNOWN end
-
-SICP: “Stream processing lets us model systems that have state without ever using assignment or mutable data.”
-
-AWESOME
-
-- Streams in action
-example: proxy server (draw)
-
-Two* modes: Push and pull
-
-Push: Firehose, consumer must be able to handle or producer must be slow enough
-Generally callbacks
-No blocking, downside is you can overload
-
-Pull: Gimme more gimme more
-Generally iterators
-Blocking, have to timeout if it takes too long (never ever block forever)
-
-pull if they feel producer if too fast
-push if they feel like producer is slower or consumer has enough resources to deal (ex. buffering)
-
-pull is more synchronous, can make it really bad for performance (ex. latency between nodes all pulling from each other)
-
-pause/resume is a mixed model
-
-- Streams in JavaScript
-
-Obviously Node streams
-simple example of loading file then writing vs. loading file and writing it AS you get it
-http://nodestreams.com/
-Substack streams handbook
-stream-adventure
-
-Generators
-Iterator style streams
-Show trivial example
-Show @getify’s router
-HighlandJS
-
-https://github.com/baconjs/bacon.js#creating-streams
-
-Browser streams
-Standard in progress??
-
-Next: Reactive Streams:
-Akka reactive streams
-Demand model (animation maybe to explain?)
-Solves the push/pull problem! Performance benefits of push and the safety of pull
-https://github.com/reactive-streams/reactive-streams-js/
-:(
-Soon???
-
-— Thank you!
+https://github.com/pselle/lastweekblog/blob/master/app.js

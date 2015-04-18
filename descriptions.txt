@@ -1,6 +1,0 @@
-Believe in streams
-
-There’s a data structure that essentially makes you a *wizard* and that data structure is streams. In this talk, you’ll learn more about the best data structure you didn’t know enough about. We’ll also talk about what streams look like in practice - IO streams, generators, and the latest developments in the awesome awesomeness that is streams.
-
-
-There’s a data structure that essentially makes you a *wizard* and that data structure is streams. In this talk, you’ll learn more about the best data structure you didn’t know enough about and how to leverage its power in JavaScript. Expect to learn about IO streams, generators, and the latest developments in the awesome awesomeness that is streams.
