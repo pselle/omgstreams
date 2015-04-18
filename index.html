@@ -38,6 +38,7 @@ thewebivore.com
 turing.cool
 
 ---
+
 class: center, middle
 
 # Thesis:
@@ -65,10 +66,6 @@ class: center, middle
 
 ---
 
-# Defining a stream
-
----
-
 # Streams are an abstract data structure
 
 ---
@@ -81,7 +78,7 @@ class: center, middle
 
 ---
 
-# Why?
+# Why streams?
 
 * Can't hold everything in memory
 * Bandwidth is expensive
@@ -117,6 +114,7 @@ class: center, middle
 * User input
 * Large data sets*
 * Your heartbeat*
+
 ---
 
 # “Stream processing lets us model systems that have state without ever using assignment or mutable data.” - SICP
@@ -124,6 +122,14 @@ class: center, middle
 ---
 
 # AWESOME
+
+---
+
+# AGAIN! AGAIN!
+
+---
+
+# “Stream processing lets us model systems that have state without ever using assignment or mutable data.” - SICP
 
 ---
 
@@ -220,6 +226,13 @@ function* something() {
 
 ---
 
+``` js
+var s = something()
+s.next()
+```
+
+---
+
 # Larger generators sample
 
 ---
@@ -229,23 +242,86 @@ function* something() {
 http://bit.ly/1NL1NEB
 
 (@getify's router)
----
-
-# Libraries &amp; Upcoming
 
 ---
 
-# BaconJS || RxJS || HighlandJS
+# caniuse?
+
+Ish. You probably want BabelJS.
+
+---
+
+# Libraries for Streams &amp; Upcoming
+
+---
+
+# BaconJS || HighlandJS || RxJS
+
+---
+
+![bacon](images/friendly-baconjs.png)
+
+---
+
+# HighlandJS
+
+"The Stream constructor, accepts an array of values or a generator function as an optional argument."
+
+Possible sources: Arrays, Generators, Node readable streams, EventEmitter/jQuery Elements, Promises
+
+---
+
+# RxJS
+
+Reactive things. Stream-friendly.
+
+---
+
+<blockquote class="twitter-tweet" lang="en"><p><a href="https://twitter.com/BenLesh">@BenLesh</a> <a href="https://twitter.com/pamasaur">@pamasaur</a> we&#39;re just a reactive library, we don&#39;t have continuous time, behaviors and denotative semantics required for FRP</p>&mdash; ReactiveExtensions* (@ReactiveX) <a href="https://twitter.com/ReactiveX/status/572928975749705729">March 4, 2015</a></blockquote>
+
+---
+
+# Translation
+
+No one can really explain what FRP is, but this video can help: https://www.youtube.com/watch?v=Agu6jipKfYw
 
 ---
 
 # Browser streams standard
 
+https://streams.spec.whatwg.org/
+
+---
+
+# Fetch API
+
+https://fetch.spec.whatwg.org/
+
+``` js
+  fetch(SOME_DATA).then(function(response) {
+    return response.json() // Eventually, STREAMS!!
+  }).then(function (data) {
+    ...
+  }).catch(function(error) {
+    ...
+  })
+```
+
 ---
 
 # Reactive Streams
 
+http://www.reactive-streams.org/
+
+(not in JavaScript &hellip; yet)
+
 ---
+
+# A couple projects with streams
+(if time)
+
+---
+
 class: center, middle
 
 # Thank you!
