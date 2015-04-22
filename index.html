@@ -15,6 +15,7 @@
       }
       .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
       .remark-slide-content { vertical-align: middle; font-size: 35px;}
+      .red { color: red;}
     </style>
   </head>
   <body>
@@ -37,8 +38,8 @@ Streams are the most &#x1F31F;awesome&#x1F31F; data structure you didn't know en
 # Agenda
 
 * Step 1: Streams? STREAMS!!!
-* Step 2: Streams in practice
-* Step 3: Streams in JavaScript
+* Step 2: Streams in JavaScript
+* Step 3: Streams in the wild
 
 ---
 
@@ -50,7 +51,27 @@ Streams are the most &#x1F31F;awesome&#x1F31F; data structure you didn't know en
 
 ---
 
+# History
+
+---
+
 # Unix!
+
+---
+
+# All glory to "pipe"
+
+---
+
+> cat bestanimals.txt | grep -i cats
+
+---
+
+> cat bestanimals.txt .red[|] grep -i cats
+
+---
+
+# But what ARE streams?
 
 ---
 
@@ -68,7 +89,7 @@ Streams are the most &#x1F31F;awesome&#x1F31F; data structure you didn't know en
 
 # Why streams?
 
-* Can't hold everything in memory
+* Can't/don't want to hold everything in memory
 * Bandwidth is expensive
 
 ---
@@ -121,15 +142,12 @@ Streams are the most &#x1F31F;awesome&#x1F31F; data structure you didn't know en
 
 ---
 
-# Step 2: Streams in Practice
-
----
-
-# Ex: Proxy Server
-
----
-
 # Push &amp; Pull Modes
+
+---
+
+# Push: Firehose
+IMAGE
 
 ---
 
@@ -140,14 +158,35 @@ Streams are the most &#x1F31F;awesome&#x1F31F; data structure you didn't know en
 
 ---
 
-# Pull: Gimme gimme
+# Pull: More please
+IMAGE
+
+---
+
+# Pull: More please
 * Iterators
 * Blocking
 * Timeout (never ever block forever)
 
 ---
 
-# When to use push or pull?
+# Step 2: Streams in Practice
+
+---
+
+# Ex: Proxy Server
+
+---
+
+IMAGE for proxy server
+
+---
+
+When are good times to use streams?
+
+---
+
+
 
 ---
 
@@ -205,6 +244,9 @@ server.listen(8000);
 * yield
 
 ---
+More examples/explanation of how streams work
+
+---
 
 ``` js
 function* something() {
@@ -215,6 +257,9 @@ function* something() {
 ---
 
 ``` js
+function* something() {
+  yield 2;
+}
 var s = something()
 s.next()
 ```
@@ -236,6 +281,12 @@ http://bit.ly/1NL1NEB
 # caniuse?
 
 Ish. You probably want BabelJS.
+
+---
+
+# More on Generators
+* Getify
+* Axel Rauschmeyer
 
 ---
 
@@ -262,10 +313,6 @@ Possible sources: Arrays, Generators, Node readable streams, EventEmitter/jQuery
 # RxJS
 
 Reactive things. Stream-friendly.
-
----
-
-<blockquote class="twitter-tweet" lang="en"><p><a href="https://twitter.com/BenLesh">@BenLesh</a> <a href="https://twitter.com/pamasaur">@pamasaur</a> we&#39;re just a reactive library, we don&#39;t have continuous time, behaviors and denotative semantics required for FRP</p>&mdash; ReactiveExtensions* (@ReactiveX) <a href="https://twitter.com/ReactiveX/status/572928975749705729">March 4, 2015</a></blockquote>
 
 ---
 
@@ -309,8 +356,21 @@ http://www.reactive-streams.org/
 
 ---
 
-# A couple projects with streams!
-(if time)
+# Step 3: Streams in the wild
+
+---
+
+# Last Week Blog
+
+---
+
+# SpaceTime App
+* http://spacetimeapp.herokuapp.com
+* https://github.com/HacktheUniverse, constellation-deformation
+
+---
+
+Slides at
 
 ---
 
