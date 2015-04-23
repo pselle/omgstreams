@@ -2,13 +2,12 @@ var output = document.getElementById('output')
 var button = document.getElementById('continue')
 button.addEventListener('click', nextValue)
 
-var foo = 'John went to the store and said "Hey there " "Another thing" to the clerk'
+var ourString = 'John went to the store and said "Hey there" to the clerk'
 
-function* StateParser(str) {
+function* StringBreaker(str) {
   var acc = ""
   var amInQuote = false
-  for (charIndex in str) {
-    var character = str[charIndex]
+  for (character of str) {
     if (character === " " && !amInQuote){
         yield acc
         acc = ""
@@ -21,6 +20,7 @@ function* StateParser(str) {
         amInQuote = !amInQuote
     }
   }
+
   if(acc != ""){
     yield acc
   }
@@ -35,13 +35,16 @@ function* MyGenerator() {
   console.log('something else entirely')
 }
 
-var myGenerator = StateParser(foo)
+var ourGenerator = MyGenerator()
+//var ourGenerator = StringBreaker(ourString)
 
 function nextValue() {
+  //for (segment of StringBreaker(ourString)) {
   var p = document.createElement("p");
-  //p.innerText = "Generator done: " + myGenerator.next().done
-  p.innerText = myGenerator.next().value
-  output.appendChild(p);
-
-//  for (x in StateParser())
+  // MyGenerator
+  p.innerText = "Generator done: " + ourGenerator.next().done
+  // StringBreaker
+  // p.innerText = ourGenerator.next().value
+  output.appendChild(p); 
+  //}
 }
