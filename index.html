@@ -39,7 +39,7 @@ Streams are the most &#x1F31F;awesome&#x1F31F; data structure you didn't know en
 
 * Step 1: Streams? STREAMS!!!
 * Step 2: Streams in JavaScript
-* Step 3: Streams in the wild
+* Step 3: Libraries &amp; Emerging Standards
 
 ---
 
@@ -119,8 +119,8 @@ Streams are the most &#x1F31F;awesome&#x1F31F; data structure you didn't know en
 ---
 
 * Natural numbers
-* Natural phenomena
-* User input
+* Weather
+* User input (ex. keystrokes)
 * Large data sets*
 * Your heartbeat*
 
@@ -147,7 +147,7 @@ Streams are the most &#x1F31F;awesome&#x1F31F; data structure you didn't know en
 ---
 
 # Push: Firehose
-IMAGE
+![Firehydrant](images/firehydrant.gif)
 
 ---
 
@@ -159,7 +159,7 @@ IMAGE
 ---
 
 # Pull: More please
-IMAGE
+![horse pulling people](http://media.riemurasia.net/albumit/mmedia/7/a1v/6x3g/386766/1340592239.gif)
 
 ---
 
@@ -170,31 +170,15 @@ IMAGE
 
 ---
 
-# Step 2: Streams in Practice
-
----
-
-# Ex: Proxy Server
-
----
-
-IMAGE for proxy server
-
----
-
-When are good times to use streams?
-
----
-
-
-
----
-
-# Step 3: Streams in JavaScript
+# Step 2: Streams in JavaScript
 
 ---
 
 # Node streams
+
+---
+
+# Node streams are push streams
 
 ---
 
@@ -215,6 +199,14 @@ server.listen(8000);
 ```
 ---
 
+## The important bit
+``` js
+fs.readFile(__dirname + '/data.txt', function (err, data) {
+  res.end(data);
+});
+```
+---
+
 ``` js
 var http = require('http');
 var fs = require('fs');
@@ -228,10 +220,19 @@ server.listen(8000);
 
 ---
 
-# Links
-* http://nodestreams.com/
-* https://github.com/substack/stream-handbook/
-* https://github.com/substack/stream-adventure/
+## The important bit
+``` js
+  var stream = fs.createReadStream(__dirname + '/data.txt');
+  stream.pipe(res);
+```
+---
+
+# Piping rather than using memory!
+
+---
+
+# Verdict
+## Node streams are awesome, non-blocking push data sources
 
 ---
 
@@ -253,16 +254,12 @@ server.listen(8000);
 ---
 
 # Ask for more when you want more
-aka streams!!!
+(aka: pull streams!)
 
 ---
-
 # You know it's a generator when &hellip;
 * function*
 * yield
-
----
-More examples/explanation of how streams work
 
 ---
 
@@ -278,21 +275,14 @@ function* something() {
 function* something() {
   yield 2;
 }
+
 var s = something()
 s.next()
 ```
 
 ---
 
-# Larger generators sample
-
----
-
-# Generators as iterators
-
-http://bit.ly/1NL1NEB
-
-(@getify's router)
+# Generators demos!
 
 ---
 
@@ -302,13 +292,11 @@ Ish. You probably want BabelJS.
 
 ---
 
-# More on Generators
-* Getify
-* Axel Rauschmeyer
+# Step 3: Libraries &amp; Emerging Standards
 
 ---
 
-# Libraries for Working with Streams
+# Libraries for working with streams
 
 ---
 
@@ -324,19 +312,25 @@ Ish. You probably want BabelJS.
 
 "The Stream constructor, accepts an array of values or a generator function as an optional argument."
 
+---
+
+# Highland: Single interface for many data types
+
 Possible sources: Arrays, Generators, Node readable streams, EventEmitter/jQuery Elements, Promises
 
 ---
 
 # RxJS
 
-Reactive things. Stream-friendly.
+Reactive tools. Stream-friendly. Batteries included.
 
 ---
 
-# Translation
+# Hold on &hellip; reactive programming?
 
-No one can really explain what FRP is, but this video can help: https://www.youtube.com/watch?v=Agu6jipKfYw
+[This video helps A LOT](https://www.youtube.com/watch?v=Agu6jipKfYw)
+
+"Controlling Time and Space: understanding the many formulations of FRP" by Evan Czaplicki at StrangeLoop
 
 ---
 
@@ -366,25 +360,58 @@ https://fetch.spec.whatwg.org/
 
 ---
 
-# Reactive Streams
+# Async Generators
+[An upcoming proposal for ES7](https://github.com/jhusain/asyncgenerator)
 
-http://www.reactive-streams.org/
+``` js
+// data producer
+async function* nums() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
 
-(not in JavaScript &hellip; yet)
+// data consumer
+async function printData() {
+  for(var x on nums()) {
+    console.log(x);
+  }
+}
+```
 
 ---
 
-# Step 3: Streams in the wild
+# Small projects using some of these tools:
 
 ---
 
 # Last Week Blog
+Tell me what's new from the last week on my blogs!
 
 ---
 
 # SpaceTime App
+Uses the Fetch API. No streams yet :(
 * http://spacetimeapp.herokuapp.com
 * https://github.com/HacktheUniverse, constellation-deformation
+
+---
+
+# Interesting links!
+
+---
+
+# Node Streams
+* http://nodestreams.com/
+* https://github.com/substack/stream-handbook/
+* https://github.com/substack/stream-adventure/
+
+---
+
+# Generators
+* [Getify's router example](http://bit.ly/1NL1NEB)
+* [You Don't Know JS Async &amp; Performance: Generators](https://github.com/getify/You-Dont-Know-JS/blob/master/async%20&%20performance/ch4.md)
+* [ES6 Generators in depth with Dr.Axel Rauschmeyer](http://www.2ality.com/2015/03/es6-generators.html)
 
 ---
 
