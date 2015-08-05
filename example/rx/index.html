@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+    <title>Silly art using Observables</title>
+    <style>
+        html, body {height:100%;}
+        .circle {
+            width: 20px;
+            height: 20px;
+            background: green;
+            border-radius: 10px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <h2>Hello. Click to move the circle.</h2>
+    <div class="circle"></div>
+    <script src="rx.all.js"></script>
+    <script type="text/javascript">
+    var bodyClickStream = Rx.Observable.fromEvent(document.body, 'click');
+    var circle = document.querySelector('.circle');
+
+        bodyClickStream.subscribe(function handler(e) {
+            console.log(e.clientX, e.clientY);
+            circle.style.left = e.clientX.toString() + "px";
+            circle.style.top = e.clientY.toString() + "px";
+        });
+    </script>
+</body>
+</html>

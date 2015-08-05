@@ -16,6 +16,8 @@
       .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
       .remark-slide-content { vertical-align: middle; font-size: 35px;}
       .red { color: red;}
+
+      #the-important-bit + pre code { font-size: 35px }
     </style>
   </head>
   <body>
@@ -80,6 +82,11 @@ Streams are the most &#x1F31F;awesome&#x1F31F; data structure you didn't know en
 ---
 
 # REAL WORLD DEMO
+
+---
+
+# SICP
+![SICP](images/SICP_cover.jpg)
 
 ---
 
@@ -222,7 +229,9 @@ server.listen(8000);
 
 ## The important bit
 ``` js
-  var stream = fs.createReadStream(__dirname + '/data.txt');
+  var stream = fs
+    .createReadStream(__dirname
+      + '/data.txt');
   stream.pipe(res);
 ```
 ---
@@ -308,9 +317,15 @@ Ish. You probably want BabelJS.
 
 ---
 
+![bacon, uncensored](images/uncensored_bacon.png)
+
+---
+
 # HighlandJS
 
-"The Stream constructor, accepts an array of values or a generator function as an optional argument."
+"The *Stream* constructor, accepts an array of values or a generator function as an optional argument."
+
+(emphasis added)
 
 ---
 
@@ -331,6 +346,12 @@ Reactive tools. Stream-friendly. Batteries included.
 [This video helps A LOT](https://www.youtube.com/watch?v=Agu6jipKfYw)
 
 "Controlling Time and Space: understanding the many formulations of FRP" by Evan Czaplicki at StrangeLoop
+
+---
+
+# Also recommended
+
+* [Intro to Rx by staltz](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754)
 
 ---
 
@@ -360,23 +381,31 @@ https://fetch.spec.whatwg.org/
 
 ---
 
-# Async Generators
-[An upcoming proposal for ES7](https://github.com/jhusain/asyncgenerator)
+# Object.observe() 
+[A proposal for ES7](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/observe)
 
 ``` js
-// data producer
-async function* nums() {
-  yield 1;
-  yield 2;
-  yield 3;
-}
+var obj = {
+  foo: 0,
+  bar: 1
+};
 
-// data consumer
-async function printData() {
-  for(var x on nums()) {
-    console.log(x);
-  }
-}
+Object.observe(obj, function(changes) {
+  console.log(changes);
+});
+```
+
+---
+
+# Observable type
+[A proposal for ES7](https://github.com/zenparsing/es-observable)
+
+``` js
+Observable.of(1, 2, 3, 4, 5)
+    .map(n => n * n)
+    .filter(n => n > 10)
+    .forEach(n => console.log(n))
+    .then(_ => console.log("All done!"));
 ```
 
 ---
@@ -385,15 +414,32 @@ async function printData() {
 
 ---
 
-# [Last Week Blog](http://last-week-blog.herokuapp.com)
+# [Last Week Blog](https://last-week-blog.herokuapp.com)
 Tell me what's new from the last week on my blogs!
 
 ---
 
 # SpaceTime App
 Uses the Fetch API. No streams yet :(
-* http://spacetimeapp.herokuapp.com
+* https://spacetimeapp.herokuapp.com
 * https://github.com/HacktheUniverse, constellation-deformation
+
+---
+
+# Millennials to Snake People
+Observes mutations to the DOM to appropriately update uses
+of the word "millennial"
+
+* [Chrome extension](https://chrome.google.com/webstore/detail/millennials-to-snake-peop/jhkibealmjkbkafogihpeidfcgnigmlf?hl=en-US)
+* [Firefox add-on (me)](https://addons.mozilla.org/en-US/firefox/addon/millennials-to-snake-people/)
+* [Safari](https://github.com/a2/millennials-to-snake-people/releases)
+* [Code using .observe()](https://github.com/pselle/millennials-to-snake-people/blob/master/data/content-script.js#L242-L264)
+
+---
+
+# Observable (using RxJS)
+
+[Reacts to a stream of clicks to move a circle](example/rx/index.html)
 
 ---
 
@@ -433,8 +479,8 @@ class: center, middle
 
 ### @pamasaur | thewebivore.com | turing.cool
     </textarea>
-    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
-    </script>
+    <!--<script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>-->
+    <script src="js/remark-latest.min.js"></script>
     <script>
       var slideshow = remark.create();
     </script>
