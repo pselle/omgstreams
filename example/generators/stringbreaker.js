@@ -27,24 +27,12 @@ function* StringBreaker(str) {
   return "\000"
 }
 
-function* MyGenerator() {
-  console.log('something')
-  yield(this)
-  console.log('something else')
-  yield(this)
-  console.log('something else entirely')
-}
-
-var ourGenerator = MyGenerator()
-//var ourGenerator = StringBreaker(ourString)
+var ourGenerator = StringBreaker(ourString)
 
 function nextValue() {
   //for (segment of StringBreaker(ourString)) {
-  var p = document.createElement("p");
-  // MyGenerator
-  p.innerText = "Generator done: " + ourGenerator.next().done
-  // StringBreaker
-  // p.innerText = ourGenerator.next().value
-  output.appendChild(p); 
+  var p = document.createElement("p")
+  p.innerText = ourGenerator.next().value
+  output.appendChild(p)
   //}
 }
