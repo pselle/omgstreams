@@ -17,7 +17,7 @@
       .remark-slide-content { vertical-align: middle; font-size: 35px;}
       .red { color: red;}
 
-      #the-important-bit + pre code { font-size: 35px }
+      .important-bit pre code, #the-important-bit + pre code { font-size: 35px }
     </style>
   </head>
   <body>
@@ -292,6 +292,7 @@ server.listen(8000);
 * yield
 
 ---
+class: important-bit
 
 ``` js
 function* something() {
@@ -300,6 +301,7 @@ function* something() {
 ```
 
 ---
+class: important-bit
 
 ``` js
 function* something() {
@@ -358,10 +360,31 @@ Possible sources: Arrays, Generators, Node readable streams, EventEmitter/jQuery
 
 # RxJS
 
-Reactive tools. Stream-friendly. Batteries included.
+_The_ reactive programming library for JavaScript. New flavor out soon!
+
+Current: https://github.com/Reactive-Extensions/RxJS
+Next: https://github.com/ReactiveX/RxJS
 
 ---
 
+# RxJS
+
+``` js
+dataSource
+  .filter(function(item) {
+    return item > 0;
+  })
+  .subscribe(
+    function(item) {
+      console.log("Item > 0", item);
+    },
+    function(err) {
+      console.log("Something is amiss", err.message)
+    }
+  )
+```
+
+---
 # Hold on &hellip; reactive programming?
 
 [This video helps A LOT](https://www.youtube.com/watch?v=Agu6jipKfYw)
@@ -494,7 +517,7 @@ of the word "millennial"
 
 * [RxJS Next](https://github.com/ReactiveX/RxJS)
 * [Rx Marbles](http://rxmarbles.com/)
-* [Cycle.js](http://cycle.js.org/)
+
 ---
 
 Slides at [pselle.github.io/omgstreams](http://pselle.github.io/omgstreams)
