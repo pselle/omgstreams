@@ -2,8 +2,6 @@ var output = document.getElementById('output')
 var button = document.getElementById('continue')
 button.addEventListener('click', nextValue)
 
-var ourString = 'John went to the store and said "Hey there" to the clerk'
-
 function* StringBreaker(str) {
   var acc = ""
   var amInQuote = false
@@ -27,12 +25,14 @@ function* StringBreaker(str) {
   return "\000"
 }
 
+var ourString = 'John went to the store and said "Hey there" to the clerk'
 var ourGenerator = StringBreaker(ourString)
 
 function nextValue() {
-  //for (segment of StringBreaker(ourString)) {
+  // for (segment of StringBreaker(ourString)) {
   var p = document.createElement("p")
+  // p.innerText = segment
   p.innerText = ourGenerator.next().value
   output.appendChild(p)
-  //}
+  // }
 }
