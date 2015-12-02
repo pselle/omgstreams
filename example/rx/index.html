@@ -3,29 +3,71 @@
 <head>
     <title>Silly art using Observables</title>
     <style>
-        html, body {height:100%;}
-        .circle {
+        html, body {height:100%; user-select:none; -webkit-user-select:none;}
+        .circle, .spawn {
             width: 20px;
             height: 20px;
             background: green;
             border-radius: 10px;
             position: absolute;
         }
+        .spawn {
+            background: red;
+        }
+
+        .double {
+            background: purple;
+        }
     </style>
 </head>
 <body>
-    <h2>Hello. Click to move the circle.</h2>
+    <h2>Hello. Click to place circles.</h2>
     <div class="circle"></div>
     <script src="rx.all.js"></script>
     <script type="text/javascript">
+    var bodyMoveStream = Rx.Observable.fromEvent(document.body, 'mousemove');
     var bodyClickStream = Rx.Observable.fromEvent(document.body, 'click');
     var circle = document.querySelector('.circle');
 
-        bodyClickStream.subscribe(function handler(e) {
-            console.log(e.clientX, e.clientY);
-            circle.style.left = e.clientX.toString() + "px";
-            circle.style.top = e.clientY.toString() + "px";
-        });
+    bodyMoveStream.subscribe(
+        function handler(e) {
+            pos = [e.clientX, e.clientY]
+
+            moveCircle(circle, pos);
+        }
+    );
+
+    bodyClickStream.subscribe(
+    function handler(e) {
+        pos = [e.clientX, e.clientY]
+        spawnCircles(pos)
+    });
+
+    var doubleClickStream = bodyClickStream
+        .buffer(() => bodyClickStream.throttle(250))
+        .filter(arr => arr.length  == 2)
+        .subscribe(
+            function handler(e) {
+                var loc = e[0]
+                pos = [loc.clientX, loc.clientY]
+                spawnCircles(pos, true)
+            })
+
+    function moveCircle(circle, pos) {
+        circle.style.left = pos[0].toString() + "px";
+        circle.style.top = pos[1].toString() + "px";
+    }
+
+    function spawnCircles(pos, isDouble) {
+        var item = document.createElement('div')
+        item.className = `spawn spawn-${pos[0]}-${pos[1]}`
+        item.style.left = pos[0].toString() + "px";
+        item.style.top = pos[1].toString() + "px";
+        if(isDouble) {
+            item.classList.add("double")
+        }
+        document.body.appendChild(item)
+    }
     </script>
 </body>
 </html>
