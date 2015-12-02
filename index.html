@@ -37,14 +37,6 @@ Streams are the most &#x1F31F;awesome&#x1F31F; data structure you didn't know en
 
 ---
 
-# Agenda
-
-* Step 1: Streams? STREAMS!!!
-* Step 2: Streams in JavaScript
-* Step 3: Libraries &amp; Emerging Standards
-
----
-
 # Step 1: Streams? STREAMS!!!
 
 ---
@@ -314,7 +306,7 @@ s.next()
 
 ---
 
-# [Generators demos!](example/index.html)
+# [Generators demos!](example/generators/index.html)
 
 ---
 
@@ -362,38 +354,12 @@ Possible sources: Arrays, Generators, Node readable streams, EventEmitter/jQuery
 
 _The_ reactive programming library for JavaScript. New flavor out soon!
 
-Current: https://github.com/Reactive-Extensions/RxJS
-Next: https://github.com/ReactiveX/RxJS
+Current: [Reactive-Extensions/RxJS](https://github.com/Reactive-Extensions/RxJS)
+Next: [ReactiveX/RxJS](https://github.com/ReactiveX/RxJS)
 
 ---
 
-# RxJS
-
-``` js
-dataSource
-  .filter(function(item) {
-    return item > 0;
-  })
-  .subscribe(
-    function(item) {
-      console.log("Item > 0", item);
-    },
-    function(err) {
-      console.log("Something is amiss", err.message)
-    }
-  )
-```
-
----
-# Hold on &hellip; reactive programming?
-
-[This video helps A LOT](https://www.youtube.com/watch?v=Agu6jipKfYw)
-
-"Controlling Time and Space: understanding the many formulations of FRP" by Evan Czaplicki at StrangeLoop
-
----
-
-# Also recommended
+# Recommended
 
 * [Intro to Rx by staltz](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754)
 
