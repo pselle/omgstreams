@@ -4,7 +4,7 @@
     <title>Silly art using Observables</title>
     <style>
         html, body {height:100%; user-select:none; -webkit-user-select:none;}
-        .circle, .spawn {
+        .circle {
             width: 20px;
             height: 20px;
             background: green;
@@ -12,60 +12,83 @@
             position: absolute;
         }
         .spawn {
-            background: red;
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 25.8px solid fuchsia;
         }
 
-        .double {
+        .square {
             background: purple;
+            position: absolute;
+            height: 20px;
+            width: 20px;
         }
     </style>
 </head>
 <body>
     <h2>Hello. Click to place circles.</h2>
     <div class="circle"></div>
-    <script src="rx.all.js"></script>
+    <script src="rx-alpha.js"></script>
     <script type="text/javascript">
     var bodyMoveStream = Rx.Observable.fromEvent(document.body, 'mousemove');
-    var bodyClickStream = Rx.Observable.fromEvent(document.body, 'click');
-    var circle = document.querySelector('.circle');
+    var clickStream = Rx.Observable.fromEvent(document.body, 'click');
 
+    var circle = document.querySelector('.circle');
     bodyMoveStream.subscribe(
         function handler(e) {
             pos = [e.clientX, e.clientY]
-
             moveCircle(circle, pos);
         }
     );
 
-    bodyClickStream.subscribe(
-    function handler(e) {
-        pos = [e.clientX, e.clientY]
-        spawnCircles(pos)
-    });
+    // Split clicks into either single or multi click
+    var splitClicks = clickStream
+        // Set a debounce timer
+        .buffer(clickStream.debounceTime(200))
+        // Split into two observables based on > 1 click
+        .partition(x => x.length === 1);
 
-    var doubleClickStream = bodyClickStream
-        .buffer(() => bodyClickStream.throttle(250))
-        .filter(arr => arr.length  == 2)
+    // Single clicks
+    splitClicks[0]
         .subscribe(
             function handler(e) {
-                var loc = e[0]
-                pos = [loc.clientX, loc.clientY]
-                spawnCircles(pos, true)
-            })
+                spawnCircles(e)
+            });
+
+    // Multi clicks
+    splitClicks[1]
+        .subscribe(
+            function handler(e) {
+                spawnSquares(e)
+            });
 
     function moveCircle(circle, pos) {
-        circle.style.left = pos[0].toString() + "px";
-        circle.style.top = pos[1].toString() + "px";
+        circle.style.left = `${pos[0].toString()}px`;
+        circle.style.top = `${pos[1].toString()}px`;
     }
 
-    function spawnCircles(pos, isDouble) {
+    function spawnCircles(event) {
+        var e = event[0],
+            pos = [e.clientX, e.clientY]
+
+        spawnItem(pos, "spawn")
+    }
+
+    function spawnSquares(event) {
+        var e = event[0],
+            pos = [e.clientX, e.clientY]
+
+        spawnItem(pos, "square")
+    }
+
+    function spawnItem(pos, className) {
         var item = document.createElement('div')
-        item.className = `spawn spawn-${pos[0]}-${pos[1]}`
-        item.style.left = pos[0].toString() + "px";
-        item.style.top = pos[1].toString() + "px";
-        if(isDouble) {
-            item.classList.add("double")
-        }
+        item.className = `${className} spawn-${pos[0]}-${pos[1]}`
+        item.style.left = `${pos[0].toString()}px`;
+        item.style.top = `${pos[1].toString()}px`;
         document.body.appendChild(item)
     }
     </script>
