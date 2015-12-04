@@ -45,6 +45,7 @@
     );
 
     // Split clicks into either single or multi click
+    // Thanks Ben Lesh for your help!
     var splitClicks = clickStream
         // Set a debounce timer
         .buffer(clickStream.debounceTime(200))
