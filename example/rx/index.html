@@ -56,7 +56,7 @@
     splitClicks[0]
         .subscribe(
             function handler(e) {
-                spawnCircles(e);
+                spawnTriangles(e);
             });
 
     // Multi clicks
@@ -71,7 +71,7 @@
         circle.style.top = `${pos[1].toString()}px`;
     }
 
-    function spawnCircles(event) {
+    function spawnTriangles(event) {
         var e = event[0],
             pos = [e.clientX, e.clientY];
 
