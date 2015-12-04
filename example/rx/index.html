@@ -39,7 +39,7 @@
     var circle = document.querySelector('.circle');
     bodyMoveStream.subscribe(
         function handler(e) {
-            pos = [e.clientX, e.clientY]
+            pos = [e.clientX, e.clientY];
             moveCircle(circle, pos);
         }
     );
@@ -56,14 +56,14 @@
     splitClicks[0]
         .subscribe(
             function handler(e) {
-                spawnCircles(e)
+                spawnCircles(e);
             });
 
     // Multi clicks
     splitClicks[1]
         .subscribe(
             function handler(e) {
-                spawnSquares(e)
+                spawnSquares(e);
             });
 
     function moveCircle(circle, pos) {
@@ -73,24 +73,24 @@
 
     function spawnCircles(event) {
         var e = event[0],
-            pos = [e.clientX, e.clientY]
+            pos = [e.clientX, e.clientY];
 
-        spawnItem(pos, "spawn")
+        spawnItem(pos, "spawn");
     }
 
     function spawnSquares(event) {
         var e = event[0],
-            pos = [e.clientX, e.clientY]
+            pos = [e.clientX, e.clientY];
 
-        spawnItem(pos, "square")
+        spawnItem(pos, "square");
     }
 
     function spawnItem(pos, className) {
-        var item = document.createElement('div')
-        item.className = `${className} spawn-${pos[0]}-${pos[1]}`
+        var item = document.createElement('div');
+        item.className = `${className} spawn-${pos[0]}-${pos[1]}`;
         item.style.left = `${pos[0].toString()}px`;
         item.style.top = `${pos[1].toString()}px`;
-        document.body.appendChild(item)
+        document.body.appendChild(item);
     }
     </script>
 </body>
